@@ -11,7 +11,7 @@ function App() {
         <h1 className='HeadingText'>
           <span>Github</span> Jobs
         </h1>
-        <Route path='/job-details/:name/:id' exact component={JobDetailsPage} />
+        <Route path='/job-details/:id' exact component={JobDetailsPage} />
         <Route path='/' exact component={SearchPage} />
         <Footer />
       </div>

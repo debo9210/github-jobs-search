@@ -10,13 +10,12 @@ const JobSearchResult = ({
   jobLocation,
   daysAgo,
   id,
-  searchWord,
 }) => {
   const history = useHistory();
   const IMAGE = companyLogo === null ? noImage : companyLogo;
 
   const jobDetailsHandler = () => {
-    history.push(`/job-details/${searchWord}/${id}`);
+    history.push(`/job-details/${id}`);
   };
 
   return (

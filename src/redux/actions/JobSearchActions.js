@@ -11,14 +11,14 @@ import {
   JOB_SEARCH_BY_KEYWORD_SUCCESS,
 } from '../constants';
 
-// const CORS = 'https://cors-anywhere.herokuapp.com/ ';
+const CORS = 'https://cors-anywhere.herokuapp.com/';
 
 export const getJobs = (num) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_JOBS_REQUEST });
 
     const { data } = await axios.get(
-      `https://jobs.github.com/positions.json?page=${num}`
+      `${CORS}https://jobs.github.com/positions.json?page=${num}`
     );
 
     dispatch({
@@ -38,7 +38,7 @@ export const getJobsByKeyword = (keyword, bool) => async (dispatch) => {
     dispatch({ type: JOB_SEARCH_BY_KEYWORD_REQUEST });
 
     const { data } = await axios.get(
-      `https://jobs.github.com/positions.json?page=1&search=${keyword}&full_time=${bool}`
+      `${CORS}https://jobs.github.com/positions.json?page=1&search=${keyword}&full_time=${bool}`
     );
 
     dispatch({
@@ -58,7 +58,7 @@ export const getJobsByLocation = (location, bool) => async (dispatch) => {
     dispatch({ type: GET_JOBS_BY_LOCATION_REQUEST });
 
     const { data } = await axios.get(
-      `https://jobs.github.com/positions.json?full_time=${bool}&location=${location}`
+      `${CORS}https://jobs.github.com/positions.json?full_time=${bool}&location=${location}`
     );
 
     dispatch({

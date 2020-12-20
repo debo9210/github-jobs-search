@@ -27,8 +27,6 @@ const MainBody = () => {
   const [jobsLength, setJobsLength] = useState(0);
   const [jobPage, setJobPage] = useState(1);
 
-  const [searchWord, setSearchWord] = useState('');
-
   const { allJobs, loading } = useSelector((state) => state.jobsArray);
 
   const { keywordJobs, loading: keywordJobsLoading } = useSelector(
@@ -37,7 +35,6 @@ const MainBody = () => {
 
   const searchHandler = () => {
     dispatch(getJobsByKeyword(inputRef.current.value, clickFulltime));
-    setSearchWord(inputRef.current.value);
     inputRef.current.value = '';
     setAllJob(false);
     setKeywordJob(true);
@@ -48,7 +45,6 @@ const MainBody = () => {
       LocationInputRef.current.value = e.target.value;
     }
     dispatch(getJobsByKeyword(e.target.value, clickFulltime));
-    setSearchWord(e.target.value);
     setAllJob(false);
     setKeywordJob(true);
     nextPageRef.current.classList.remove('DisableBtn');
@@ -56,7 +52,6 @@ const MainBody = () => {
 
   const changeHandler = (e) => {
     dispatch(getJobsByKeyword(e.target.value, clickFulltime));
-    setSearchWord(e.target.value);
     e.target.value = '';
     setAllJob(false);
     setKeywordJob(true);
@@ -114,7 +109,6 @@ const MainBody = () => {
           jobType={job.type}
           daysAgo={differentInDays(job.created_at)}
           id={job.id}
-          searchWord='all-jobs'
         />
       ));
   }
@@ -133,7 +127,6 @@ const MainBody = () => {
           jobType={job.type}
           daysAgo={differentInDays(job.created_at)}
           id={job.id}
-          searchWord={searchWord.toLowerCase()}
         />
       ));
   }
@@ -160,6 +153,8 @@ const MainBody = () => {
     setJobPage(jobPage - 1);
     dispatch(getJobs(jobPage));
   };
+
+  // console.log(getData);
 
   useEffect(() => {
     dispatch(getJobs());
